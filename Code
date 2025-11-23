@@ -1,0 +1,32 @@
+Code:
+import random
+import string
+
+def generate_password(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def main():
+    while True:
+        print("\n=== Password Generator ===")
+
+        try:
+            length = int(input("Enter password length: "))
+            if length < 4:
+                print("Password length must be at least 4.")
+                continue
+
+            password = generate_password(length)
+            print(f"Generated Password: {password}")
+
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        # Ask user to generate again or exit
+        choice = input("\nDo you want to generate another password? (y/n): ").lower()
+        if choice != 'y':
+            print("Exiting Password Generator. Goodbye!")
+            break
+
+main()
